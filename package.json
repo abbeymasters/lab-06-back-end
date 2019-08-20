@@ -9,17 +9,17 @@
     "start": "node server.js", 
     "start:watch": "nodemon server.js" 
   },
-  // "repository": {
-    // "type": "git",
-    // "url": "git+https://github.com/abbeymasters/lab-06-back-end.git"
-  // },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abbeymasters/lab-06-back-end.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    // "url": "https://github.com/abbeymasters/lab-06-back-end/issues"
+    "url": "https://github.com/abbeymasters/lab-06-back-end/issues"
   },
-  // "homepage": "https://github.com/abbeymasters/lab-06-back-end#readme",
+  "homepage": "https://github.com/abbeymasters/lab-06-back-end#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
