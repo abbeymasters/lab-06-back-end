@@ -55,10 +55,38 @@ function getWeather() {
 }
 
 function toForecast() {
-    return {
-        forecast: geoWeather.currently.summary,
-        time: geoWeather.currently.time
-    };
+    return [ {
+        forecast: geoWeather.daily.data[0].summary,
+        time: geoWeather.daily.data[0].time
+    },
+    {
+        forecast: geoWeather.daily.data[1].summary,
+        time: geoWeather.daily.data[1].time
+    },
+    {
+        forecast: geoWeather.daily.data[2].summary,
+        time: geoWeather.daily.data[2].time
+    },
+    {
+        forecast: geoWeather.daily.data[3].summary,
+        time: geoWeather.daily.data[3].time
+    },
+    {
+        forecast: geoWeather.daily.data[4].summary,
+        time: geoWeather.daily.data[4].time
+    },
+    {
+        forecast: geoWeather.daily.data[5].summary,
+        time: geoWeather.daily.data[5].time
+    },
+    {
+        forecast: geoWeather.daily.data[6].summary,
+        time: geoWeather.daily.data[6].time
+    },
+    {
+        forecast: geoWeather.daily.data[7].summary,
+        time: geoWeather.daily.data[7].time
+    }];
 }
 
 app.listen(PORT, () => {
