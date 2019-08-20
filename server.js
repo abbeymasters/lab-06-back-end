@@ -55,7 +55,7 @@ function getWeather() {
 }
 
 function toForecast() {
-    return [ {
+    return [{
         forecast: geoWeather.daily.data[0].summary,
         time: geoWeather.daily.data[0].time
     },
