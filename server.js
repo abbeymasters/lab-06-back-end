@@ -45,7 +45,7 @@ app.get('/events', (request, response) => {
     const latitude = request.query.latitude;
     const longitude = request.query.longitude;
 
-    eventbriteApi.getEvents(latitude, longitude)
+    eventbriteApi.listEvents(latitude, longitude)
         .then(events => {
             response.json(events);
         })
