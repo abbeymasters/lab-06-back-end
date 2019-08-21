@@ -6,6 +6,7 @@ const app = express();
 const morgan = require('morgan');
 const mapsApi = require('./lib/maps-api.js');
 const weatherApi = require('./lib/weather-api.js'); 
+const eventbriteApi = require('./lib/eventbrite-api.js');
 const PORT = process.env.PORT || 3000;
 app.use(morgan('dev'));
 app.use(cors());
@@ -32,6 +33,21 @@ app.get('/weather', (request, response) => {
     weatherApi.getForecast(latitude, longitude)
         .then(forecast => {
             response.json(forecast);
+        })
+        .catch(err => {
+            response.status(500).json({
+                error: err.message || err
+            });
+        });
+});
+
+app.get('./events', (request, response) => {
+    const latitude = request.query.latitude;
+    const longitude = request.query.longitude;
+
+    eventbriteApi.listEvents(latitude, longitude)
+        .then(events => {
+            response.json(events);
         })
         .catch(err => {
             response.status(500).json({
