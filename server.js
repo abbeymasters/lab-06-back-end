@@ -41,7 +41,7 @@ app.get('/weather', (request, response) => {
         });
 });
 
-app.get('./events', (request, response) => {
+app.get('/events', (request, response) => {
     const latitude = request.query.latitude;
     const longitude = request.query.longitude;
 
