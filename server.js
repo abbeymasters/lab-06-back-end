@@ -2,38 +2,29 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-
 const app = express();
-
-app.use(cors());
+const morgan = require('morgan');
+const mapsApi = require('./lib/maps-api.js');
+const weatherApi = require('./lib/weather-api.js'); 
 const PORT = process.env.PORT || 3000;
+app.use(morgan('dev'));
+app.use(cors());
 
 
 app.get('/location', (request, response) => {
-    try {
-        const location = request.query.location;
-        const result = getLatLng(location);
-        response.status(200).json(result);
-    }
-    catch(err) {
-        response.status(500).send('Sorry something went wrong—we suck!');
-    }
+
+    const search = request.query.search;
+    mapsApi.getLocation(search)
+        .then(location => {
+            response.json(location);
+        })
+        .catch(err => {
+            response.status(500).json({
+                error: err.message || err
+            });
+        });
 });
 
-function getLatLng() {
-    return toLocation(geoData);
-}
-
-function toLocation() {
-    const firstResult = geoData.results[0];
-    const geometry = firstResult.geometry;
-
-    return {
-        formatted_query: firstResult.formatted_address,
-        latitude: geometry.location.lat,
-        longitude: geometry.location.lng
-    };
-}
 
 app.get('/weather', (request, response) => {
     try {
@@ -41,12 +32,10 @@ app.get('/weather', (request, response) => {
         const result = getWeather(weather);
         response.status(200).json(result);
     }
-    catch(err) {
+    catch (err) {
         response.status(500).send('Sorry something went wrong—we suck!');
     }
 });
-
-const geoData = require('./data/geo.json');
 
 const geoWeather = require('./data/darksky.json');
 
