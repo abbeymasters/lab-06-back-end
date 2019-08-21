@@ -32,7 +32,7 @@ app.get('/weather', (request, response) => {
         const result = getWeather(weather);
         response.status(200).json(result);
     }
-    catch (err) {
+    catch(err) {
         response.status(500).send('Sorry something went wrong—we suck!');
     }
 });
